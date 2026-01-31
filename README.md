@@ -8,18 +8,18 @@ This repository documents my learning and hands-on work from the VSD IAT Digital
 - Introduction to open-source EDA ecosystem
 - Understanding ASIC design flow
 - Overview of OpenLANE architecture
-RTL Synthesis (Yosys)
-Static Timing Analysis (OpenSTA)
-DFT checks
-Floorplanning
-Placement
-Clock Tree Synthesis (CTS)
-Routing (TritonRoute)
-RC Extraction
-Physical Verification (DRC/LVS)
-GDSII generation
-OpenLANE is an **automated RTL‑to‑GDSII flow** for digital ASICs.
-- Introduction to SkyWater 130nm PDK
+                                                         [RTL Synthesis (Yosys),
+Static Timing Analysis (OpenSTA),
+DFT checks,
+Floorplanning,
+Placement,
+Clock Tree Synthesis (CTS),
+Routing (TritonRoute),
+RC Extraction,
+Physical Verification (DRC/LVS),
+GDSII generation,
+(OpenLANE is an **automated RTL‑to‑GDSII flow** for digital ASICs)
+]- Introduction to SkyWater 130nm PDK
 
 ### Key Learnings
 - Importance of open-source tools in VLSI
