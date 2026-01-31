@@ -2,14 +2,15 @@
 This repository documents my learning and hands-on work from the VSD IAT Digital VLSI SoC Design course. It covers five days of theory and practical labs, including a complete RTL-to-GDSII ASIC implementation using the OpenLANE flow with the SkyWater 130nm PDK, covering synthesis, floorplanning, placement, routing, STA, and GDS generation.
 # Sky130 Digital VLSI SoC Design using OpenLANE
 
-## Sky130 Day 1 – Inception of Open-Source EDA, OpenLANE and Sky130 PDK
+### Sky130 Day 1 – Inception of Open-Source EDA, OpenLANE and Sky130 PDK
 
 ### Overview
 - Introduction to open-source EDA ecosystem
 - Understanding ASIC design flow
-- Overview of OpenLANE architecture[RTL Synthesis (Yosys),Static Timing Analysis (OpenSTA),DFT checks,Floorplanning,Placement,Clock Tree Synthesis (CTS),Routing (TritonRoute),RC Extraction,Physical Verification (DRC/LVS),GDSII generation]
-(OpenLANE is an **automated RTL‑to‑GDSII flow** for digital ASICs)
+- Overview of OpenLANE architecture   [RTL Synthesis (Yosys),Static Timing Analysis (OpenSTA),DFT checks,Floorplanning,Placement,Clock Tree Synthesis (CTS),Routing (TritonRoute),RC Extraction,Physical Verification (DRC/LVS),GDSII generation]
+-(OpenLANE is an **automated RTL‑to‑GDSII flow** for digital ASICs)
 - Introduction to SkyWater 130nm PDK
+### 1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
 
 ### Key Learnings
 - Importance of open-source tools in VLSI
