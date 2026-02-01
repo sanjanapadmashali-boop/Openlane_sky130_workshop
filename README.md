@@ -11,7 +11,7 @@ This repository documents my learning and hands-on work from the VSD IAT Digital
 -(OpenLANE is an **automated RTL‑to‑GDSII flow** for digital ASICs)
 - Introduction to SkyWater 130nm PDK
 ### 1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
-
+https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/4172b91fdf93b614cc12a4f91c14e612b136c931/flo_tcl_interactive.png
 ### Key Learnings
 - Importance of open-source tools in VLSI
 - RTL-to-GDSII automated flow
