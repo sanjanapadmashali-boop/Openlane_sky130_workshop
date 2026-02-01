@@ -61,6 +61,8 @@ screenshot of file created
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/d0402995ea9edc95d036a46b38c978786d4d0654/ngspice_run.png)
 ### 4.Editing the spice model file for analysis through simulation.
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/745011b75a795b7aaaabbc60e3e74d5205e21c7f/edited_spice_file.png)
+grid command
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/7813d2055e1e4a6a21ad43d74bf45aca57c9e443/grid_command_run.png)
 ### 5.Post-layout ngspice simulations
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/generated_plot_after_changes.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/delay_calc_20_80_perc_outputs.png)
@@ -72,33 +74,26 @@ screenshot of file created
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/rise_delay_fall_delay_calc.png)
 rise cell delay = 2.214-2.149 = 0.065ns
 ### 6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
-
+Screenshot of commands run
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commans_run_drc_tests.png)
+Screenshot of magicrc
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/sc_of_magicrc.png)
+Screenshot incorrectly implemented poly.9 , no drc voilation even though spacing is <0.48
 ![images alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/implementation_of_poly.9_drc_voilation.png)
 ![images alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/drc_voilation.png)
+rules
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/diff_rules.png)
+commands inseted in sky130A.tech file
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile2.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile3.png)
 
 
-
-
-
-
-
-### Overview
-- Custom standard cell design using Magic
-- DRC and LVS checks
-- Circuit extraction and simulation using ngspice
-
 ### Key Learnings
 - CMOS inverter layout design
-- Parasitic extraction
-- Timing and power characterization of cells
-
----
+-  Custom standard cell design using Magic
+- DRC and LVS checks
+- Circuit extraction and simulation using ngspice
 
 ## Sky130 Day 4 – Pre-layout Timing Analysis and Importance of Good Clock Tree
 
@@ -106,6 +101,37 @@ rise cell delay = 2.214-2.149 = 0.065ns
 - Static Timing Analysis (STA) fundamentals
 - Pre-layout timing analysis
 - Clock tree design concepts
+### 1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/tracks_info_sky130_fd_sc_hc.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/grid_command_run.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/conditions_verified.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/conditions_verified.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/tracks_info_sky130_fd_sc_hc.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/created_lef_file.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/copying_files_commands.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/run_synth_commands.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/after_synthesis.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/area_rreduced_.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commans_to_change_parameters.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_floorplan.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/command_to_clear_errors_in_fp.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/command_to_clear_errors_in_fp2.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/run_placement2.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/merged.lef_file.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/synthesis_sucessfull.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/using_tag.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/synthesis_sucessfull_after_parameters.png)
+
+
+
+
+
+
+
+
+
+
+
 
 ### Key Learnings
 - Setup and hold timing constraints
