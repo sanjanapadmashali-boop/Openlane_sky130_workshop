@@ -217,7 +217,10 @@ commands inseted in sky130A.tech file
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile2.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile3.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/dnwell.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/dnwell1.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/dnwell1(2).png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/dnwell2.png)
+
 ### Key Learnings
 - CMOS inverter layout design
 -  Custom standard cell design using Magic
