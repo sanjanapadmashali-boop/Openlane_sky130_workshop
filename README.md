@@ -1,7 +1,13 @@
 # Openlane_sky130_workshop
 This repository documents my learning and hands-on work from the VSD IAT Digital VLSI SoC Design course. It covers five days of theory and practical labs, including a complete RTL-to-GDSII ASIC implementation using the OpenLANE flow with the SkyWater 130nm PDK, covering synthesis, floorplanning, placement, routing, STA, and GDS generation.
 # Sky130 Digital VLSI SoC Design using OpenLANE
-
+## Tools Used
+- OpenLANE
+- OpenROAD
+- Magic VLSI
+- Ngspice
+- OpenSTA
+- SkyWater 130nm PDK
 ### Sky130 Day 1 – Inception of Open-Source EDA, OpenLANE and Sky130 PDK
 
 ### Overview
@@ -10,6 +16,7 @@ This repository documents my learning and hands-on work from the VSD IAT Digital
 - Overview of OpenLANE architecture   [RTL Synthesis (Yosys),Static Timing Analysis (OpenSTA),DFT checks,Floorplanning,Placement,Clock Tree Synthesis (CTS),Routing (TritonRoute),RC Extraction,Physical Verification (DRC/LVS),GDSII generation]
 -(OpenLANE is an **automated RTL‑to‑GDSII flow** for digital ASICs)
 - Introduction to SkyWater 130nm PDK
+
 #### 1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/4172b91fdf93b614cc12a4f91c14e612b136c931/flo_tcl_interactive.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_1__cell_ratio.png)
@@ -64,22 +71,24 @@ screenshot of file created
 grid command
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/7813d2055e1e4a6a21ad43d74bf45aca57c9e443/grid_command_run.png)
 ### 5.Post-layout ngspice simulations
+commands for ng spice simulation
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/generated_plot_after_changes.png)
+generated plot
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/delay_calc_20_80_perc_outputs.png)
 -o/p of 20% at 0.66v is 2.122
 -o/p of 80% at 2.64v is 2.249 
 -fall trasition time  = 2.249-2.122 = 0.127 ns
-
-
+generated plot
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/rise_delay_fall_delay_calc.png)
 rise cell delay = 2.214-2.149 = 0.065ns
 ### 6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
 Screenshot of commands run
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commans_run_drc_tests.png)
-Screenshot of magicrc
+Screenshot of .magicrc file 
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/sc_of_magicrc.png)
-Screenshot incorrectly implemented poly.9 , no drc voilation even though spacing is <0.48
+#### Screenshot incorrectly implemented poly.9 , no drc voilation even though spacing is <0.48
 ![images alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/implementation_of_poly.9_drc_voilation.png)
+drc voilation
 ![images alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/drc_voilation.png)
 rules
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/diff_rules.png)
@@ -87,7 +96,6 @@ commands inseted in sky130A.tech file
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile2.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_inserted_insky130_techfile3.png)
-
 
 ### Key Learnings
 - CMOS inverter layout design
@@ -102,100 +110,138 @@ commands inseted in sky130A.tech file
 - Pre-layout timing analysis
 - Clock tree design concepts
 ### 1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
+Conditions to be verified before moving forward with custom designed cell layout:
+
+Condition 1: The input and output ports of the standard cell should lie on the intersection of the vertical and horizontal tracks.
+Condition 2: Width of the standard cell should be odd multiples of the horizontal track pitch.
+Condition 3: Height of the standard cell should be even multiples of the vertical track pitch
+screenshot of tracks.info of sky_fd_hd
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/tracks_info_sky130_fd_sc_hc.png)
+grid
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/grid_command_run.png)
+conditions verfied
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/conditions_verified.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/conditions_verified.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/tracks_info_sky130_fd_sc_hc.png)
+newly created_lef_file
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/created_lef_file.png)
+copying files to picorv32a
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/copying_files_commands.png)
+edit config.tcl
+Run openlane flow synthesis with newly inserted custom inverter cell.
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/run_synth_commands.png)
+Remove/reduce the newly introduced violations with the introduction of custom inverter cell by modifying design parameters.
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/after_synthesis.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/area_rreduced_.png)
+Commands to view and change parameters to improve timing and run synthesis
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commans_to_change_parameters.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_floorplan.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/command_to_clear_errors_in_fp.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/command_to_clear_errors_in_fp2.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/run_placement2.png)
+Screenshot of merged.lef in tmp directory with our custom inverter as macro
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/merged.lef_file.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/synthesis_sucessfull.png)
+using tag -overwrite
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/using_tag.png)
+after parameters changed synthesis sucessfull and slack became 0
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/synthesis_sucessfull_after_parameters.png)
+placement def in magic
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/placement_def_in_magic.png)
+internal layers of cells
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/internal_layers_of_cells.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/run_synthesis_final.png)
+slack voilated
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/sta_slack_voilated.png)
+fanout commands
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/fanout_commands.png)
+slack report
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/slack_r.png)
+created my_base_sdc folder
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/my_base_sdc.png)
+sta reports
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/sta_run_1.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/sta_run_2.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/sta_run_3.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/sta_run_4.png)
+or gate of strength 2 driving 4 fanouts
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/or_gate_2str_driving_4_fanouts.png)
+commands to optimize timing of or to strength 4
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_optimize_timing_or_to_str_4.png)
+sta reports
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/report_sta_1.png)
+sta or gate strength 2 drivung oa gate
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/sta_or_gate_str2_driving_oa_gate.png)
+slack reduced
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/slack_reduced_1.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/reduced_slack2.png)
+Replace the old netlist with the new netlist generated after timing ECO fix and implement the floorplan, placement and cts.
+Now to insert this updated netlist to PnR flow and we can use write_verilog and overwrite the synthesis netlist but before that we are going to make a copy of the old old netlist
+
+Commands to make copy of netlist
+
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_to_make_cp_of_netlist.png)
+commands to wwrite verilog
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_write_verilog.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/verified_netlist_or_4_4.png)
+Commands load the design and run necessary stages
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_run_synthesis.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/synthesis_sucessfull_after_write_verilog.png)
+floorplan 
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/run_floorplan_after_write_verilog.png)
+placement 
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/placement_done.png)
+run_cts
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/placement_done_run_cts.png)
+cts_done
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/cts_done.png)
+Post-CTS OpenROAD timing analysis.
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_cts.png)
+Screenshots of commands run and timing report generated
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_cts_openroad_commands.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_openlane2.png)
+
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/report_checks1.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/report_checks2.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/report_checks3.png)
+ post-CTS OpenROAD timing analysis by removing 'sky130_fd_sc_hd__clkbuf_1' cell from clock buffer list variable 'CTS_CLK_BUFFER_LIST'
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_cts_ta_removing_clk_buff.png)
+screenshots of commands and timing reports generated
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_timing_report1.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_timing_report2.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_timing_report3.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_timing_report4.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_timing_report5.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/cts_done_gen_pdn.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/PDN_def_in_magic.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_to_load_pdn.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/zero_voilations.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routing_done.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routing_done2.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routed_def.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routed_def_2.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routed_def_3png.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/fast_route_guide.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_route_opensta_commands.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_routing_opensta_timing_report1.png)
-![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_routing_opensta_timing_report2.png)
-
-
-
-
-
-
-
-
-
-
 
 ### Key Learnings
 - Setup and hold timing constraints
 - Clock skew and jitter
 - Importance of balanced clock distribution
-
----
-
 ## Sky130 Day 5 – Final Steps for RTL to GDSII using TritonRoute and OpenSTA
 
 ### Overview
 - Detailed routing using TritonRoute
 - Design Rule Check (DRC)
 - Post-route timing analysis using OpenSTA
+cts_done_gen pdn
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/cts_done_gen_pdn.png)
+pdn in magic
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/PDN_def_in_magic.png)
+commands to load pdn
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_to_load_pdn.png)
+zero voilations
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/zero_voilations.png)
+routing done
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routing_done.png)
+
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routing_done2.png)
+routed def
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routed_def.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routed_def_2.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routed_def_3png.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/fast_route_guide.png)
+Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrated OpenSTA in OpenROAD
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_route_opensta_commands.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_routing_opensta_timing_report1.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_routing_opensta_timing_report2.png)
 
 ### Key Learnings
 - Routing completion and verification
@@ -203,17 +249,10 @@ commands inseted in sky130A.tech file
 - Post-layout timing closure
 - Final GDSII generation
 
----
-
-## Tools Used
-- OpenLANE
-- OpenROAD
-- Magic VLSI
-- Ngspice
-- OpenSTA
-- SkyWater 130nm PDK
-
----
 
 ## Conclusion
 This repository captures the complete RTL-to-GDSII flow and provides hands-on exposure to modern open-source VLSI design tools, reinforcing both theoretical understanding and practical ASIC implementation skills.
+## Acknowledgements
+**Kunal Ghosh**, Co-founder, VSD Corp. Pvt. Ltd.
+**Nickson P Jose**, Physical Design Engineer, Intel Corporation.
+**R. Timothy Edwards**, Senior Vice President of Analog and Design, efabless Corporation.
