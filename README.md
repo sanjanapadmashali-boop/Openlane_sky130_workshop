@@ -10,6 +10,48 @@ An **Application-Specific Integrated Circuit (ASIC)** is a chip designed for a s
 - Higher performance
 - Lower power consumption
 - Reduced area
+## Software–to–Silicon Stack Overview
+
+Modern digital systems are built as a layered stack, where each layer abstracts complexity from the one above it. Software never interacts directly with transistors — the **Instruction Set Architecture (ISA)** is the formal contract between software and hardware.
+
+### 1. Application Software
+User-level programs such as stopwatches, calculators, and browsers.
+- Written in high-level languages (C, C++, Python, Java)
+- Hardware-independent
+- Relies on system software and compilers
+
+### 2. System Software
+Manages hardware resources and provides services to applications.
+- Operating Systems (Linux, Windows)
+- Device drivers, memory management, I/O handling
+- Bridges application software and hardware
+
+### 3. Compiler & Assembler
+- Compiler translates high-level code (C/C++) into ISA-specific assembly
+- Assembler converts assembly into binary machine code (ELF/executable)
+- Same source code can run on different processors with the appropriate compiler
+
+### 4. Instruction Set Architecture (ISA – RISC-V)
+Defines **what** instructions a processor can execute, not **how** it is implemented.
+- Open-source, modular, and extensible
+- Widely used in industry and academia
+- Acts as the legal interface between software and hardware
+
+### 5. Microarchitecture (RTL)
+Implements the ISA at the Register Transfer Level (RTL).
+- Written in Verilog/VHDL
+- Example core: PicoRV32
+- Includes instruction decoding, registers, control logic, and datapath
+- Multiple microarchitectures can implement the same ISA
+
+### 6. Physical Design & Fabrication
+- RTL is synthesized to gates, placed and routed
+- Timing closure and physical verification
+- Final chip is manufactured using foundry PDK rules
+
+### Key Insight
+**Software depends on the ISA, not on the hardware implementation.**  
+As long as the ISA contract is honored, the same software can run on different CPUs.
 
 ### ASIC Design Flow (RTL to GDSII)
 The complete ASIC design flow includes:
