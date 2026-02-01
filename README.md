@@ -8,14 +8,42 @@ This repository documents my learning and hands-on work from the VSD IAT Digital
 - Ngspice
 - OpenSTA
 - SkyWater 130nm PDK
-### Sky130 Day 1 – Inception of Open-Source EDA, OpenLANE and Sky130 PDK
 
-### Overview
-- Introduction to open-source EDA ecosystem
-- Understanding ASIC design flow
-- Overview of OpenLANE architecture   [RTL Synthesis (Yosys),Static Timing Analysis (OpenSTA),DFT checks,Floorplanning,Placement,Clock Tree Synthesis (CTS),Routing (TritonRoute),RC Extraction,Physical Verification (DRC/LVS),GDSII generation]
--(OpenLANE is an **automated RTL‑to‑GDSII flow** for digital ASICs)
-- Introduction to SkyWater 130nm PDK
+## Day 1 – Inception of Open-Source EDA, OpenLANE, and Sky130 PDK
+
+### Introduction to ASIC Design
+An **Application-Specific Integrated Circuit (ASIC)** is a chip designed for a specific purpose. Compared to FPGAs, ASICs provide:
+- Higher performance
+- Lower power consumption
+- Reduced area
+
+### ASIC Design Flow (RTL to GDSII)
+The complete ASIC design flow includes:
+1. Specification
+2. RTL Design (Verilog)
+3. Functional Verification
+4. Logic Synthesis
+5. Floorplanning
+6. Placement
+7. Clock Tree Synthesis (CTS)
+8. Routing
+9. Sign-off Checks (DRC, LVS, STA)
+10. GDSII Generation
+
+### Open-Source EDA Tools
+Open-source EDA tools make chip design accessible and affordable:
+- **Yosys** – Logic synthesis
+- **OpenLANE** – RTL-to-GDSII flow
+- **Magic** – Layout and DRC
+- **OpenSTA** – Static Timing Analysis
+- **ngspice** – Circuit simulation
+
+### Sky130 PDK
+The **Sky130 Process Design Kit (PDK)** provides:
+- Device models
+- Design rules
+- Standard cell libraries  
+Released by **SkyWater Technology**, Sky130 is fully open-source.
 
 #### 1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/4172b91fdf93b614cc12a4f91c14e612b136c931/flo_tcl_interactive.png)
@@ -25,7 +53,44 @@ This repository documents my learning and hands-on work from the VSD IAT Digital
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_1_flop_ratio_dff.png)
 % of dff = 10.84%
 
-## Sky130 Day 2 – Good Floorplan vs Bad Floorplan and Introduction to Library Cells
+## Day 2 – Good Floorplan vs Bad Floorplan & Introduction to Library Cells
+
+### Floorplanning
+Floorplanning defines the physical layout of the chip, including:
+- Die area
+- Core area
+- IO placement
+- Power planning
+
+### Die Area and Core Area
+- **Die Area**: Total chip area
+- **Core Area**: Area containing standard cells
+
+### Aspect Ratio and Utilization
+- Aspect Ratio = Height / Width
+- Utilization = (Standard Cell Area / Core Area)
+
+### Power Planning
+A good power plan ensures reliable operation using:
+- VDD rails
+- VSS (ground) rails
+- Power rings and straps
+
+### Good vs Bad Floorplan
+**Good Floorplan**
+- Balanced utilization
+- Minimal congestion
+- Improved timing
+
+**Bad Floorplan**
+- Routing congestion
+- IR drop issues
+- Timing violations
+
+### Standard Cell Libraries
+Standard cell libraries contain:
+- **Combinational cells**: AND, OR, MUX
+- **Sequential cells**: Flip-flops, Latches
 run_floorplan
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_2_run_floorplan.png)
 opening_floorplan_def file
@@ -55,7 +120,32 @@ floorplan.def in magic
 - Core utilization and aspect ratio
 - Basics of standard cell design and placement
 
-## Sky130 Day 3 – Design Library Cell using Magic Layout and Ngspice Characterization
+## Day 3 – Design Library Cell using Magic Layout and Ngspice Characterization
+### CMOS Inverter
+The CMOS inverter is the basic building block of digital circuits and is used to understand:
+- Transistor sizing
+- Layout techniques
+- Performance metrics
+
+### Layout using Magic
+Magic is used to:
+- Create layout geometries
+- Perform DRC checks
+- Extract netlists
+
+### Design Rules
+Design rules ensure manufacturability:
+- Minimum width
+- Minimum spacing
+- Enclosure rules
+
+### SPICE Characterization
+Using **ngspice**, the following parameters are measured:
+- Propagation delay
+- Rise time
+- Fall time
+- Power consumption
+
 #### 1. Clone custom inverter standard cell design from github
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/b275acad76417a4ff64f5f857edaea94b294c31a/clone_custom_inv_commands.png)
 #### 2. Load the custom inverter layout in magic and explore.
@@ -109,6 +199,81 @@ commands inseted in sky130A.tech file
 - Static Timing Analysis (STA) fundamentals
 - Pre-layout timing analysis
 - Clock tree design concepts
+- ### Timing Concepts
+
+Timing analysis ensures that data is transferred correctly between sequential elements within the required clock period. The key timing parameters are:
+
+- **Setup Time**  
+  The minimum amount of time that data must be stable **before the active clock edge** so that it can be reliably captured by a flip-flop.  
+  Violation of setup time leads to **setup timing failures**, usually caused by slow data paths.
+
+- **Hold Time**  
+  The minimum amount of time that data must remain stable **after the active clock edge**.  
+  Hold violations occur when data paths are too fast and change too quickly after the clock edge.
+
+- **Clock-to-Q Delay (Tcq)**  
+  The delay between the active clock edge and the change in output (Q) of a flip-flop.  
+  This delay directly affects the timing of the next logic stage.
+
+- **Slack**  
+  Slack is the difference between **required time** and **actual arrival time** of a signal.  
+  - Positive slack → Timing met  
+  - Negative slack → Timing violation  
+
+---
+
+### Pre-Layout Timing Analysis
+
+Pre-layout timing analysis is performed **before physical design** using estimated wire delays.  
+It helps designers:
+
+- Identify **critical paths** early
+- Evaluate design performance at the RTL or gate level
+- Fix timing issues before placement and routing
+- Reduce the risk of major timing failures during sign-off
+
+Although interconnect delays are estimated, pre-layout analysis provides a **baseline for timing closure**.
+
+---
+
+### Clock Tree Synthesis (CTS)
+
+Clock Tree Synthesis is the process of building a **balanced clock distribution network** that delivers the clock signal to all sequential elements simultaneously.
+
+CTS involves:
+- Inserting clock buffers and inverters
+- Balancing clock path lengths
+- Minimizing clock skew and latency
+
+A well-designed clock tree is essential for achieving reliable and high-speed operation in synchronous circuits.
+
+---
+
+### Clock Skew and Latency
+
+- **Clock Skew**  
+  Clock skew is the difference in clock arrival time between two sequential elements.  
+  Excessive skew can cause:
+  - Setup violations
+  - Hold violations
+  - Unpredictable circuit behavior
+
+- **Clock Latency**  
+  Clock latency is the total time taken by the clock signal to propagate from the clock source to a register.  
+  Latency affects the overall performance and must be controlled during CTS.
+
+---
+
+### Importance of Clock Tree Synthesis
+
+Clock Tree Synthesis plays a crucial role in physical design by:
+
+- Minimizing clock skew across the design
+- Reducing setup and hold timing violations
+- Improving timing closure
+- Ensuring reliable synchronous operation
+- Enhancing overall chip performance and stability
+
 ### 1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
 Conditions to be verified before moving forward with custom designed cell layout:
 
@@ -215,12 +380,67 @@ screenshots of commands and timing reports generated
 - Setup and hold timing constraints
 - Clock skew and jitter
 - Importance of balanced clock distribution
-## Sky130 Day 5 – Final Steps for RTL to GDSII using TritonRoute and OpenSTA
+## Day 5 – Final Steps for RTL to GDSII using TritonRoute and OpenSTA
+## Day 5 – Final Steps for RTL-to-GDS using TritonRoute and OpenSTA
 
-### Overview
-- Detailed routing using TritonRoute
-- Design Rule Check (DRC)
-- Post-route timing analysis using OpenSTA
+Day 5 focuses on completing the **physical design flow** and performing **final sign-off checks** to ensure the design is ready for fabrication. This stage converts the placed and clocked design into a manufacturable layout.
+
+---
+
+### Routing
+
+Routing is the process of creating physical interconnections between all placed standard cells while satisfying design rules and timing constraints.
+
+Routing is performed in two stages:
+
+- **Global Routing**  
+  Global routing determines the high-level routing paths between cells by dividing the design into routing regions.  
+  It focuses on:
+  - Estimating routing resources
+  - Avoiding congestion
+  - Providing routing guides for detailed routing  
+
+- **Detailed Routing**  
+  Detailed routing performs exact wire placement based on global routing guides.  
+  It ensures:
+  - Precise metal layer assignment
+  - Proper via insertion
+  - Compliance with all design rules  
+
+In OpenLANE, **TritonRoute** is used for detailed routing, producing a **DRC-clean layout**.
+
+---
+
+### Sign-off Checks
+
+Sign-off checks validate that the design meets **manufacturing, logical, and timing requirements**.
+
+- **DRC (Design Rule Check)**  
+  Verifies that the layout follows all fabrication rules defined by the Sky130 PDK, such as:
+  - Minimum spacing
+  - Minimum width
+  - Enclosure rules  
+  DRC-clean layout is mandatory before fabrication.
+
+- **LVS (Layout vs Schematic)**  
+  Ensures that the physical layout matches the synthesized netlist.  
+  LVS checks:
+  - Correct connectivity
+  - Proper device instantiation
+  - No missing or extra components  
+
+- **STA (Static Timing Analysis)**  
+  Static Timing Analysis verifies that all timing paths meet setup and hold constraints without requiring simulation.  
+  **OpenSTA** is used to:
+  - Analyze critical paths
+  - Verify clock constraints
+  - Confirm timing closure  
+
+---
+
+
+
+
 cts_done_gen pdn
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/cts_done_gen_pdn.png)
 pdn in magic
@@ -243,13 +463,21 @@ Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrat
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_routing_opensta_timing_report1.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/post_routing_opensta_timing_report2.png)
 
-### Key Learnings
-- Routing completion and verification
-- Parasitic extraction
-- Post-layout timing closure
-- Final GDSII generation
 
+### Final Output
 
+After successful routing and sign-off checks, the final outputs are generated:
+
+- **GDSII File**  
+  The final layout database containing all geometric information required for fabrication.
+
+- **Fabrication-Ready Design**  
+  A fully verified design that meets:
+  - Functional correctness
+  - Timing constraints
+  - Manufacturing rules  
+
+This marks the completion of the **RTL-to-GDSII flow**.
 ## Conclusion
 This repository captures the complete RTL-to-GDSII flow and provides hands-on exposure to modern open-source VLSI design tools, reinforcing both theoretical understanding and practical ASIC implementation skills.
 ## Acknowledgements
