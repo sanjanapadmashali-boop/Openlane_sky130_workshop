@@ -32,6 +32,15 @@ area of die = 660.685*671.405=443587.2 sq microns
 floorplan def in magic
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/floorplan_def_in_magic.png)
 
+Equdistant placement of ports
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/b275acad76417a4ff64f5f857edaea94b294c31a/equidisstance_plaement_ports.png)
+### 4. Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
+run placement
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/b275acad76417a4ff64f5f857edaea94b294c31a/run_placement.png)
+
+### 5. Load generated placement def in magic tool and explore the placement.
+floorplan.def in magic 
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/b275acad76417a4ff64f5f857edaea94b294c31a/floorplan_def_in_magic2_placement.png)
 
 
 ### Key Learnings
@@ -40,6 +49,11 @@ floorplan def in magic
 - Basics of standard cell design and placement
 
 ## Sky130 Day 3 – Design Library Cell using Magic Layout and Ngspice Characterization
+clone custom of inverter-command
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/b275acad76417a4ff64f5f857edaea94b294c31a/clone_custom_inv_commands.png)
+
+nmos and pmos identified
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/b275acad76417a4ff64f5f857edaea94b294c31a/nmos_pmos_identified.png)
 
 ### Overview
 - Custom standard cell design using Magic
