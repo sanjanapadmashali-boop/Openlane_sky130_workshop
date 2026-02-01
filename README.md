@@ -5,11 +5,6 @@ This repository documents my learning and hands-on work from the VSD IAT Digital
 
 ## Day 1 – Inception of Open-Source EDA, OpenLANE, and Sky130 PDK
 
-### Introduction to ASIC Design
-An **Application-Specific Integrated Circuit (ASIC)** is a chip designed for a specific purpose. Compared to FPGAs, ASICs provide:
-- Higher performance
-- Lower power consumption
-- Reduced area
 ## Software–to–Silicon Stack Overview
 
 Modern digital systems are built as a layered stack, where each layer abstracts complexity from the one above it. Software never interacts directly with transistors — the **Instruction Set Architecture (ISA)** is the formal contract between software and hardware.
