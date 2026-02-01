@@ -220,6 +220,8 @@ commands inseted in sky130A.tech file
 
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/dnwell2.jpeg)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/dnwell1%20(2).jpeg)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/nwell3.jpeg)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/no_error_found.jpeg)
 
 ### Key Learnings
 - CMOS inverter layout design
