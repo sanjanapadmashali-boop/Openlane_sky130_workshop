@@ -12,27 +12,32 @@ This repository documents my learning and hands-on work from the VSD IAT Digital
 - Introduction to SkyWater 130nm PDK
 ### 1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/4172b91fdf93b614cc12a4f91c14e612b136c931/flo_tcl_interactive.png)
-
-### Key Learnings
-- Importance of open-source tools in VLSI
-- RTL-to-GDSII automated flow
-- PDK components and technology files
-
----
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_1__cell_ratio.png)
+### 2.claclulate flop ratio
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_1_flop_ratio.png)
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_1_flop_ratio_dff.png)
+% of dff = 10.84%
 
 ## Sky130 Day 2 – Good Floorplan vs Bad Floorplan and Introduction to Library Cells
+run_floorplan
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_2_run_floorplan.png)
+opening_floorplan_def file
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/opening_floorplan_def_file.png)
 
-### Overview
-- Concepts of chip floorplanning
-- Comparison between good and bad floorplans
-- Introduction to standard cell libraries
+1 unit distance = 1 micron 
+die width = 660.685 microns
+die height = 671.405 microns
+area of die = 660.685*671.405=443587.2 sq microns
+
+floorplan def in magic
+![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/floorplan_def_in_magic.png)
+
+
 
 ### Key Learnings
 - Impact of floorplan on performance and area
 - Core utilization and aspect ratio
 - Basics of standard cell design and placement
-
----
 
 ## Sky130 Day 3 – Design Library Cell using Magic Layout and Ngspice Characterization
 
