@@ -42,7 +42,7 @@ Released by **SkyWater Technology**, Sky130 is fully open-source.
 #### 1. Run 'picorv32a' design synthesis using OpenLANE flow and generate necessary outputs.
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/4172b91fdf93b614cc12a4f91c14e612b136c931/flo_tcl_interactive.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_1__cell_ratio.png)
-#### 2.claclulate flop ratio
+#### 2.claculate flop ratio
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_1_flop_ratio.png)
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/c042a06d230432430ded3c61686dfdb7f1079357/task_1_flop_ratio_dff.png)
 % of dff = 10.84%
@@ -374,7 +374,7 @@ screenshots of commands and timing reports generated
 - Setup and hold timing constraints
 - Clock skew and jitter
 - Importance of balanced clock distribution
-## Day 5 – Final Steps for RTL to GDSII using TritonRoute and OpenSTA
+
 ## Day 5 – Final Steps for RTL-to-GDS using TritonRoute and OpenSTA
 
 Day 5 focuses on completing the **physical design flow** and performing **final sign-off checks** to ensure the design is ready for fabrication. This stage converts the placed and clocked design into a manufacturable layout.
@@ -441,7 +441,7 @@ pdn in magic
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/PDN_def_in_magic.png)
 commands to load pdn
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/commands_to_load_pdn.png)
-zero voilations
+zero violations
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/zero_voilations.png)
 routing done
 ![image alt](https://github.com/sanjanapadmashali-boop/Openlane_sky130_workshop/blob/main/routing_done.png)
